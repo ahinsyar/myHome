@@ -1,4 +1,4 @@
-package com.myhome.controller;
+package com.myhome.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +8,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(){
-        return "index";
+        return "index page";
     }
 }
