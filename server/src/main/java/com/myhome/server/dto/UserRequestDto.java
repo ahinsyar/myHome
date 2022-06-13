@@ -2,12 +2,14 @@ package com.myhome.server.dto;
 
 import com.myhome.server.domain.User;
 import com.myhome.server.domain.enumvalue.Role;
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserRequestDto {
 
     private Long idx;
@@ -26,6 +28,17 @@ public class UserRequestDto {
     private String email;
 
     private String phoneNumber;
+
+    @Builder
+    public UserRequestDto(String name, String userId, String password, Role role, LocalDate birthday, String email, String phoneNumber) {
+        this.name = name;
+        this.userId = userId;
+        this.password = password;
+        this.role = role;
+        this.birthday = birthday;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 
     public User toEntity() {
         return User.builder()
