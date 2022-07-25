@@ -42,10 +42,14 @@ public class UserService {
         return UserResponseDto.toDto(update);
     }
 
+    public void deleteUser(UserRequestDto request) {
+        User findUser = userRepository.findById(request.getIdx()).orElseThrow(() -> new IllegalArgumentException("유저가 없습니다."));
+        findUser.update(request.toEntity());
+    }
+
     private void existUser(String userId) {
         if(userRepository.existsByUserId(userId)){
             throw new IllegalArgumentException("이미 등록된 유저입니다.");
         }
     }
-
 }

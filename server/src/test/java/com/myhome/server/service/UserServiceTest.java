@@ -162,4 +162,39 @@ class UserServiceTest {
         assertThat(exception.getMessage()).isEqualTo("이미 등록된 유저입니다.");
     }
 
+    @Test
+    @DisplayName("유저 정보 업데이트")
+    void updateUserTest() throws Exception
+    {
+        LocalDate birthDay1 = LocalDate.of(1985, 11, 5);
+        UserRequestDto req =  new UserRequestDto( 1L, "박순영", "ethan", "5678", Role.PARENTS, birthDay1, "ethan.park@home.com", "010-8864-8549");
+        //given
+        given(userRepository.findById(anyLong())).willReturn(Optional.of(testUser1));
+        //when
+        UserResponseDto updateUser = userService.updateUser(req);
+        //then
+        assertThat(updateUser.getPassword()).isEqualTo(req.getPassword());
+        assertThat(updateUser.getEmail()).isEqualTo(req.getEmail());
+        assertThat(updateUser.getPhoneNumber()).isEqualTo(req.getPhoneNumber());
+
+    }
+
+    @Test
+    @DisplayName("유저 삭제")
+    void deleteUserTest() throws Exception
+    {
+        LocalDate birthDay1 = LocalDate.of(1985, 11, 5);
+        UserRequestDto req =  UserRequestDto.builder()
+                .idx(1L)
+                .role(Role.NONE)
+                .build();
+        //given
+        given(userRepository.findById(anyLong())).willReturn(Optional.of(testUser1));
+
+        //when
+        userService.deleteUser(req);
+
+        //then
+        assertThat(testUser1.getRole()).isEqualTo(Role.NONE);
+    }
 }
