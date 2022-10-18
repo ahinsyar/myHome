@@ -29,11 +29,11 @@ public class UserRequestDto {
 
     private String phoneNumber;
 
-    @Builder
-    public UserRequestDto(Long idx, Role role) {
-        this.idx = idx;
-        this.role = role;
-    }
+//    @Builder
+//    public UserRequestDto(Long idx, Role role) {
+//        this.idx = idx;
+//        this.role = role;
+//    }
 
     @Builder
     public UserRequestDto(String name, String userId, String password, Role role, LocalDate birthday, String email, String phoneNumber) {

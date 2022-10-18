@@ -5,7 +5,6 @@ import com.myhome.server.domain.enumvalue.Role;
 import com.myhome.server.dto.UserRequestDto;
 import com.myhome.server.dto.UserResponseDto;
 import com.myhome.server.repository.UserRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -179,22 +178,22 @@ class UserServiceTest {
 
     }
 
-    @Test
-    @DisplayName("유저 삭제")
-    void deleteUserTest() throws Exception
-    {
-        LocalDate birthDay1 = LocalDate.of(1985, 11, 5);
-        UserRequestDto req =  UserRequestDto.builder()
-                .idx(1L)
-                .role(Role.NONE)
-                .build();
-        //given
-        given(userRepository.findById(anyLong())).willReturn(Optional.of(testUser1));
-
-        //when
-        userService.deleteUser(req);
-
-        //then
-        assertThat(testUser1.getRole()).isEqualTo(Role.NONE);
-    }
+//    @Test
+//    @DisplayName("유저 삭제")
+//    void deleteUserTest() throws Exception
+//    {
+//        LocalDate birthDay1 = LocalDate.of(1985, 11, 5);
+//        UserRequestDto req =  UserRequestDto.builder()
+//                .idx(1L)
+//                .role(Role.NONE)
+//                .build();
+//        //given
+//        given(userRepository.findById(anyLong())).willReturn(Optional.of(testUser1));
+//
+//        //when
+//        userService.deleteUser(req);
+//
+//        //then
+//        assertThat(testUser1.getRole()).isEqualTo(Role.NONE);
+//    }
 }
