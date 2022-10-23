@@ -47,4 +47,13 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
+    @PostMapping("/user/update")
+    public ResponseEntity<UserResponseDto> updateUser(@RequestBody UserRequestDto user){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(userService.updateUser(user));
+        } catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 }

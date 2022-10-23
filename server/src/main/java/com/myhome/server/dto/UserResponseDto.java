@@ -39,6 +39,5 @@ public class UserResponseDto {
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())
                 .build();
-
     }
 }
