@@ -6,6 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_idx")
     private Long idx;
 
     private String name;
@@ -31,6 +34,9 @@ public class User {
     private String email;
 
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "user")
+    private List<Schedule> scheduleList = new ArrayList<>();
 
     @Builder
     public User(String name, String userId, String password, Role role, LocalDate birthday, String email, String phoneNumber) {
